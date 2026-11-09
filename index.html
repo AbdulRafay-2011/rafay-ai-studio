@@ -21,7 +21,7 @@
       <button class="workspace-switch"><span class="workspace-avatar">R</span><span><b>Personal workspace</b><small>Free workspace</small></span><span class="chevron">⌄</span></button>
       <div class="nav-label">WORKSPACE</div>
       <nav class="main-nav">
-        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button><button class="nav-item" data-page="dashboard"><span>▦</span> Dashboard</button>
         <button class="nav-item" data-page="create"><span>✳</span> Create</button>
         <button class="nav-item" data-page="projects"><span>▧</span> My projects</button>
         <button class="nav-item" data-page="library"><span>▦</span> Asset library</button>
@@ -34,7 +34,7 @@
       </nav>
       <div class="sidebar-bottom">
         <div class="provider-note"><span class="status-dot"></span><div><b>Studio status</b><small>Workspace ready</small></div></div>
-        <button class="nav-item" data-page="settings"><span>⚙</span> Settings</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Settings</button><button class="nav-item" data-page="account"><span>◉</span> Profile</button><button class="nav-item" data-page="admin" id="adminNav" hidden><span>♙</span> Admin panel</button>
         <div class="profile-row"><div class="profile-avatar">R</div><div><b>Creator account</b><small>Personal workspace</small></div><span class="more">···</span></div>
       </div>
     </aside>
@@ -128,14 +128,16 @@
 
       <section class="page" id="page-settings">
         <div class="page-intro"><div class="eyebrow">PREFERENCES</div><h1>Settings</h1><p>Manage your workspace preferences and connected services.</p></div>
-        <div class="settings-card"><div><h3>Workspace</h3><p>Personal workspace</p></div><div class="settings-value">RAFAY AI STUDIO</div></div>
+        <div class="settings-card"><div><h3>Profile</h3><p>Update your display name and short bio.</p></div><button class="secondary-btn" data-go="account">Manage profile</button></div><div class="settings-card"><div><h3>Workspace</h3><p>Personal workspace</p></div><div class="settings-value">RAFAY AI STUDIO</div></div>
         <div class="settings-card"><div><h3>Data storage</h3><p>Projects save in this browser and sync to your account after Google sign-in.</p></div><span class="settings-value" id="storageStatus">Local + cloud when signed in</span></div>
         <div class="settings-card"><div><h3>Firebase connection</h3><p>Google sign-in and private per-user project sync are configured. Publish the Firestore rules to finish setup.</p></div><span class="settings-value" id="firebaseStatus">Awaiting setup</span></div>
         <div class="settings-card"><div><h3>AI generation provider</h3><p>Connect a supported image/video inference service before enabling generation.</p></div><span class="settings-value warning-text">Not connected</span></div>
         <div class="settings-card"><div><h3>Clear local workspace</h3><p>Remove projects and assets saved in this browser.</p></div><button class="danger-btn" id="clearWorkspace">Clear workspace</button></div>
       </section>
 
-      <footer class="footer"><span>✳ RAFAY AI STUDIO</span><span>Imagine. Create. Transform.</span><span>Built for ideas that matter.</span></footer>
+<section class="page" id="page-dashboard"><div class="page-intro"><div class="eyebrow">YOUR ACCOUNT</div><h1>Dashboard</h1><p>Your creative workspace at a glance.</p></div><div class="account-stats"><article class="settings-card"><div><h3>Cloud projects</h3><p>Your saved creative work</p></div><strong id="statProjects">0</strong></article><article class="settings-card"><div><h3>Account</h3><p>Google account status</p></div><strong id="statAccount">Signed out</strong></article></div><div class="settings-card"><div><h3>Recent activity</h3><p id="dashboardActivity">Sign in to see your cloud projects.</p></div><button class="secondary-btn" data-go="projects">View projects</button></div></section>
+<section class="page" id="page-account"><div class="page-intro"><div class="eyebrow">PERSONAL SETTINGS</div><h1>Your profile</h1><p>Manage your account details.</p></div><div class="studio-panel account-form"><label class="field-label" for="profileName">DISPLAY NAME</label><input id="profileName" maxlength="60" placeholder="Your name"><label class="field-label" for="profileBio">ABOUT YOU</label><textarea id="profileBio" maxlength="240" placeholder="A short profile description"></textarea><div class="settings-card"><div><h3>Google account</h3><p id="profileEmail">Not signed in</p></div><span id="profileRole" class="settings-value">Member</span></div><button class="primary-btn" id="saveProfile">Save profile</button><p id="profileMessage" class="provider-disclaimer">Sign in with Google to manage your profile.</p></div></section>
+<section class="page" id="page-admin"><div class="page-intro"><div class="eyebrow">OWNER CONTROLS</div><h1>Admin dashboard</h1><p>Private platform overview. Only the owner account can access this area.</p></div><div class="account-stats"><article class="settings-card"><div><h3>Total users</h3><p>Registered profiles</p></div><strong id="adminUserCount">—</strong></article><article class="settings-card"><div><h3>Total projects</h3><p>Saved cloud projects</p></div><strong id="adminProjectCount">—</strong></article></div><div class="studio-panel"><div class="panel-title"><span>♙</span><div><b>Registered users</b><small>Account overview</small></div><button class="secondary-btn" id="refreshAdmin">Refresh</button></div><div id="adminUsers" class="admin-users">Sign in as owner to load data.</div></div></section>      <footer class="footer"><span>✳ RAFAY AI STUDIO</span><span>Imagine. Create. Transform.</span><span>Built for ideas that matter.</span></footer>
     </main>
   </div>
   <div class="toast" id="toast" role="status"></div>
