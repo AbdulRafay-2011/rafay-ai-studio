@@ -17,7 +17,7 @@ $("#helpBtn").addEventListener("click",()=>showModal("Studio help","This is the 
 function showModal(title,message){$("#modalTitle").textContent=title;$("#modalText").textContent=message;$("#modal").classList.remove("hidden")}
 function closeModal(){$("#modal").classList.add("hidden")}
 $("#modalClose").addEventListener("click",closeModal);$("#modalOk").addEventListener("click",closeModal);$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
-function saveProject(type,prompt,details={}){if(!prompt.trim()){toast("Add a description before saving.");return}const item={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),type,prompt:prompt.trim(),details,createdAt:new Date().toISOString()};projects.unshift(item);write(storeKey,projects);renderHome();renderProjects();showModal("Project saved","Your "+type+" project has been saved in this browser. Cloud sync will be added after Firebase is connected.");}
+function saveProject(type,prompt,details={}){if(!prompt.trim()){toast("Add a description before saving.");return}const item={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),type,prompt:prompt.trim(),details,createdAt:new Date().toISOString()};projects.unshift(item);write(storeKey,projects);if(window.rafayCloudSaveProject){window.rafayCloudSaveProject(item).catch(error=>console.warn("Cloud save unavailable:",error));}renderHome();renderProjects();showModal("Project saved",window.rafayCurrentUser?"Your project was saved locally and is syncing to your account.":"Your project is saved in this browser. Sign in with Google to enable cloud sync.");}
 function renderProjects(){const query=($("#projectSearch")?.value||"").toLowerCase();const filter=$("#projectFilter")?.value||"all";const filtered=projects.filter(p=>(filter==="all"||p.type===filter)&&p.prompt.toLowerCase().includes(query));const html=filtered.map(p=>projectCard(p)).join("");$("#allProjects").innerHTML=html;$("#projectsEmpty").classList.toggle("hidden",filtered.length>0);$("#allProjects").classList.toggle("hidden",filtered.length===0);bindDelete()}
 function projectCard(p){return '<article class="project-card" data-id="'+escapeHtml(p.id)+'"><span class="project-type">'+escapeHtml(p.type.toUpperCase())+'</span><h3>'+escapeHtml(p.details.title||p.prompt.slice(0,48))+'</h3><p>'+escapeHtml(p.prompt.slice(0,150))+'</p><small>'+new Date(p.createdAt).toLocaleString()+'</small><button class="text-btn delete-project" data-id="'+escapeHtml(p.id)+'">Delete project ×</button></article>'}
 function bindDelete(){$$(".delete-project").forEach(b=>b.addEventListener("click",()=>{projects=projects.filter(p=>p.id!==b.dataset.id);write(storeKey,projects);renderProjects();renderHome();toast("Project deleted.")}))}
@@ -43,3 +43,20 @@ $("#libraryUploadBtn").addEventListener("click",()=>$("#libraryFile").click());$
 $("#clearWorkspace").addEventListener("click",()=>showModal("Clear this browser workspace?","This will permanently remove locally saved projects and assets from this browser. This cannot be undone."));
 $("#modalOk").addEventListener("click",()=>{if($("#modalTitle").textContent==="Clear this browser workspace?"){projects=[];assets=[];write(storeKey,projects);write(assetKey,assets);renderHome();renderProjects();renderAssets();toast("Local workspace cleared.")}closeModal()});
 renderHome();renderProjects();renderAssets();renderScenes();
+window.addEventListener("rafay-auth-state", event => {
+  const user = event.detail?.user || null;
+  const projectsFromCloud = event.detail?.projects || [];
+  const authButton = document.querySelector("#authBtn");
+  const authStatus = document.querySelector("#authStatus");
+  window.rafayCurrentUser = user;
+  if (authButton) authButton.textContent = user ? "Sign out" : "Sign in with Google";
+  if (authStatus) authStatus.textContent = user ? (user.displayName || user.email || "Signed in") : "Not signed in";
+  if (user && projectsFromCloud.length) {
+    const merged = new Map(projects.map(project => [project.id, project]));
+    projectsFromCloud.forEach(project => merged.set(project.id, project));
+    projects = [...merged.values()].sort((a,b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    write(storeKey, projects);
+    renderHome();
+    renderProjects();
+  }
+});
