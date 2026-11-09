@@ -43,7 +43,7 @@
       <header class="topbar">
         <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
         <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="crumbTitle">Home</strong></div>
-        <div class="top-actions"><span class="system-status"><i></i> All systems normal</span><button class="icon-btn" id="helpBtn" title="Help">?</button><button class="top-avatar">R</button></div>
+        <div class="top-actions"><span class="system-status"><i></i> All systems normal</span><span id="authStatus" class="muted" style="font-size:10px">Not signed in</span><button class="primary-btn" id="authBtn" type="button" style="padding:9px 12px;font-size:10px">Sign in with Google</button><button class="icon-btn" id="helpBtn" title="Help">?</button></div>
       </header>
 
       <section class="page active-page" id="page-home">
@@ -141,5 +141,6 @@
   <div class="toast" id="toast" role="status"></div>
   <div class="modal-backdrop hidden" id="modal"><div class="modal"><button class="modal-close" id="modalClose">×</button><div class="modal-icon">✳</div><h2 id="modalTitle">Project saved</h2><p id="modalText">Your project has been saved to this browser.</p><button class="primary-btn" id="modalOk">Continue</button></div></div>
   <script src="app.js"></script>
+  <script type="module" src="firebase.js"></script>
 </body>
 </html>
