@@ -21,9 +21,9 @@ The frontend uses standard HTML, CSS and JavaScript. Open `index.html` in a brow
 
 ## Integration status
 
-AI image/video generation, Firebase Authentication, Firestore cloud sync and Firebase Storage are **not connected yet**. The interface does not fake AI generation. You can prepare and save creative briefs locally; real generation requires a supported inference provider.
+AI image/video generation and Firebase Storage are **not connected yet**. Google Authentication, Firestore profile storage and per-user project sync are implemented in the frontend. The interface does not fake AI generation. You can prepare and save creative briefs locally; real generation requires a supported inference provider.
 
-Projects and assets in this version are stored in the current browser only. They are not cloud-backed.
+Projects are stored locally and synced to Firestore after Google sign-in. Reference assets remain local to the current browser in this version.
 
 ## Roadmap
 
@@ -47,6 +47,7 @@ The Firestore rules allow each signed-in user to access only documents under the
 
 ## Account and admin features
 - Google sign-in and private per-user cloud projects.
+- Browser-local authentication persistence, so refreshes should keep the session active.
 - Cloud deletion for projects.
 - Editable user profile stored at `users/{uid}`.
 - Owner-only read-only admin overview of profiles and project counts.
