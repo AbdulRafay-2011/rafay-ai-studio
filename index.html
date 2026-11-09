@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080d0c" />
+  <meta name="description" content="RAFAY AI STUDIO — Imagine. Create. Transform. Your creative workspace for AI images, videos and stories." />
+  <title>RAFAY AI STUDIO — Imagine. Create. Transform.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home" aria-label="Rafay AI Studio home">
+        <span class="brand-mark">R<span>✳</span></span>
+        <span class="brand-copy"><b>RAFAY</b><small>AI STUDIO</small></span>
+      </a>
+      <button class="workspace-switch"><span class="workspace-avatar">R</span><span><b>Personal workspace</b><small>Free workspace</small></span><span class="chevron">⌄</span></button>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav">
+        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-page="create"><span>✳</span> Create</button>
+        <button class="nav-item" data-page="projects"><span>▧</span> My projects</button>
+        <button class="nav-item" data-page="library"><span>▦</span> Asset library</button>
+      </nav>
+      <div class="nav-label tools-label">CREATE WITH AI</div>
+      <nav class="main-nav">
+        <button class="nav-item" data-page="image"><span>▧</span> Image studio <i>NEW</i></button>
+        <button class="nav-item" data-page="video"><span>▶</span> Video studio</button>
+        <button class="nav-item" data-page="storyboard"><span>▤</span> Storyboard</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="provider-note"><span class="status-dot"></span><div><b>Studio status</b><small>Workspace ready</small></div></div>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Settings</button>
+        <div class="profile-row"><div class="profile-avatar">R</div><div><b>Creator account</b><small>Personal workspace</small></div><span class="more">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="crumbTitle">Home</strong></div>
+        <div class="top-actions"><span class="system-status"><i></i> All systems normal</span><button class="icon-btn" id="helpBtn" title="Help">?</button><button class="top-avatar">R</button></div>
+      </header>
+
+      <section class="page active-page" id="page-home">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow"><span class="spark">✳</span> YOUR CREATIVE SPACE</div><h1>Ideas become<br><em>extraordinary.</em></h1><p>Bring your imagination to life. Create images, shape videos, and build visual stories — all in one place.</p><button class="primary-btn" data-go="create">Start creating <span>↗</span></button></div>
+          <div class="hero-art" aria-label="Abstract emerald creative artwork"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div><div class="art-ring"></div><div class="art-caption">IMAGINE<br><b>WHAT'S NEXT</b></div><div class="art-cross">✳</div></div>
+        </div>
+        <div class="section-heading"><div><div class="eyebrow">GET STARTED</div><h2>What will you create today?</h2></div><span class="muted">Choose a creative tool</span></div>
+        <div class="tool-grid">
+          <button class="tool-card image-card" data-go="image"><span class="tool-icon">▧</span><span class="tool-tag">IMAGE</span><h3>Image studio</h3><p>Turn your words into visual concepts, artwork and creative assets.</p><span class="card-link">Open image studio ↗</span><span class="card-art image-art">✳</span></button>
+          <button class="tool-card video-card" data-go="video"><span class="tool-icon">▶</span><span class="tool-tag">VIDEO</span><h3>Video studio</h3><p>Plan cinematic clips and bring scenes to life with motion.</p><span class="card-link">Open video studio ↗</span><span class="card-art video-art">◉</span></button>
+          <button class="tool-card story-card" data-go="storyboard"><span class="tool-icon">▤</span><span class="tool-tag">STORY</span><h3>Storyboard</h3><p>Organise ideas into scenes and shape a visual narrative.</p><span class="card-link">Build a storyboard ↗</span><span class="card-art story-art">▱</span></button>
+        </div>
+        <div class="section-heading recent-heading"><div><div class="eyebrow">YOUR WORKSPACE</div><h2>Recent projects</h2></div><button class="text-btn" data-go="projects">View all projects ↗</button></div>
+        <div class="empty-state compact-empty" id="homeEmpty"><div class="empty-symbol">▧</div><b>Your creative journey starts here</b><p>Your saved projects will appear here when you create them.</p><button class="secondary-btn" data-go="create">Create your first project</button></div>
+        <div class="project-grid" id="homeProjects"></div>
+      </section>
+
+      <section class="page" id="page-create">
+        <div class="page-intro"><div class="eyebrow">CREATIVE WORKSPACE</div><h1>What are we making?</h1><p>Choose a starting point. Your ideas, your direction.</p></div>
+        <div class="create-choices">
+          <button class="choice-card" data-go="image"><span class="choice-icon">▧</span><div><h3>Create an image</h3><p>Generate a visual from a text description or use a reference image.</p></div><span>↗</span></button>
+          <button class="choice-card" data-go="video"><span class="choice-icon">▶</span><div><h3>Create a video</h3><p>Prepare a text-to-video or image-to-video concept.</p></div><span>↗</span></button>
+          <button class="choice-card" data-go="storyboard"><span class="choice-icon">▤</span><div><h3>Build a storyboard</h3><p>Break your idea into scenes and keep your story organised.</p></div><span>↗</span></button>
+        </div>
+        <div class="info-banner"><span>✳</span><div><b>One studio. Many possibilities.</b><p>Generation services are not connected yet. You can prepare prompts, upload references and save project ideas now.</p></div></div>
+      </section>
+
+      <section class="page" id="page-image">
+        <div class="page-intro"><div class="eyebrow">AI CREATION / IMAGE</div><h1>Image studio</h1><p>Describe the image in your mind. Shape the details before generation.</p></div>
+        <div class="studio-layout">
+          <div class="studio-panel">
+            <div class="panel-title"><span>✳</span><div><b>Image creation</b><small>Text to image · Image to image</small></div><span class="panel-badge">WORKSPACE</span></div>
+            <div class="field-label">CREATION MODE</div><div class="segmented" id="imageModes"><button class="selected" data-mode="text">Text to image</button><button data-mode="reference">Image to image</button></div>
+            <label class="field-label" for="imagePrompt">YOUR PROMPT</label><textarea id="imagePrompt" placeholder="Describe the image you want to create... Be specific about subject, lighting, mood, colours and style."></textarea>
+            <div class="prompt-footer"><span>Be descriptive for better creative direction</span><span id="imageCount">0 / 1500</span></div>
+            <div id="referenceUpload" class="upload-box hidden"><input type="file" id="referenceFile" accept="image/*" hidden><button id="uploadReference">＋ Upload reference image</button><span id="referenceName">PNG, JPG or WEBP</span></div>
+            <div class="settings-row"><div><label class="field-label" for="imageRatio">ASPECT RATIO</label><select id="imageRatio"><option>1:1 · Square</option><option>16:9 · Landscape</option><option>9:16 · Portrait</option><option>4:5 · Social post</option><option>3:2 · Photo</option></select></div><div><label class="field-label" for="imageStyle">STYLE DIRECTION</label><select id="imageStyle"><option>Choose a style</option><option>Photorealistic</option><option>Cinematic</option><option>3D render</option><option>Illustration</option><option>Minimalist</option><option>Product photography</option></select></div></div>
+            <button class="primary-btn wide-btn" id="prepareImage">Prepare image project <span>↗</span></button>
+            <p class="provider-disclaimer">AI image generation will become available after an inference provider is connected. No generation is simulated here.</p>
+          </div>
+          <div class="preview-panel"><div class="preview-top"><b>Preview space</b><span class="muted">PROJECT PREVIEW</span></div><div class="preview-canvas" id="imagePreview"><div class="preview-placeholder"><span>✳</span><b>Your canvas is ready</b><p>Your project preview will appear here.</p></div></div><div class="preview-bottom"><span id="imagePreviewStatus">Waiting for your prompt</span><button class="text-btn" id="clearImage">Clear ↺</button></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-video">
+        <div class="page-intro"><div class="eyebrow">AI CREATION / VIDEO</div><h1>Video studio</h1><p>Start with a scene. Plan the movement, mood and visual direction.</p></div>
+        <div class="studio-layout">
+          <div class="studio-panel">
+            <div class="panel-title"><span>▶</span><div><b>Video creation</b><small>Text to video · Image to video</small></div><span class="panel-badge">WORKSPACE</span></div>
+            <div class="field-label">CREATION MODE</div><div class="segmented" id="videoModes"><button class="selected" data-mode="text">Text to video</button><button data-mode="reference">Image to video</button></div>
+            <label class="field-label" for="videoPrompt">SCENE DESCRIPTION</label><textarea id="videoPrompt" placeholder="Describe your scene, camera movement, subject action and atmosphere..."></textarea>
+            <div class="prompt-footer"><span>Describe what happens in the scene</span><span id="videoCount">0 / 1500</span></div>
+            <div id="videoUpload" class="upload-box hidden"><input type="file" id="videoReferenceFile" accept="image/*" hidden><button id="uploadVideoReference">＋ Upload starting image</button><span id="videoReferenceName">PNG, JPG or WEBP</span></div>
+            <div class="settings-row"><div><label class="field-label" for="videoRatio">ASPECT RATIO</label><select id="videoRatio"><option>16:9 · Landscape</option><option>9:16 · Portrait</option><option>1:1 · Square</option></select></div><div><label class="field-label" for="videoLength">CLIP LENGTH</label><select id="videoLength"><option>5 seconds</option><option>8 seconds</option><option>10 seconds</option></select></div></div>
+            <button class="primary-btn wide-btn" id="prepareVideo">Prepare video project <span>↗</span></button>
+            <p class="provider-disclaimer">Video generation is not connected yet. This workspace prepares and saves your creative brief.</p>
+          </div>
+          <div class="preview-panel"><div class="preview-top"><b>Video preview</b><span class="muted">SCENE PREVIEW</span></div><div class="preview-canvas video-canvas" id="videoPreview"><div class="preview-placeholder"><span>▶</span><b>Your video canvas is ready</b><p>Your scene preview will appear here.</p></div></div><div class="preview-bottom"><span id="videoPreviewStatus">Waiting for your scene</span><button class="text-btn" id="clearVideo">Clear ↺</button></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-storyboard">
+        <div class="page-intro"><div class="eyebrow">CREATIVE PLANNING</div><h1>Storyboard</h1><p>Turn a big idea into a sequence of clear visual scenes.</p></div>
+        <div class="storyboard-toolbar"><div><b>Your story</b><small>Build your scenes one by one</small></div><button class="primary-btn" id="addScene">＋ Add scene</button></div>
+        <div class="scene-list" id="sceneList"></div>
+        <div class="storyboard-actions"><button class="secondary-btn" id="saveStoryboard">Save storyboard</button><span id="storyStatus">Your scenes are saved in this browser when you save.</span></div>
+      </section>
+
+      <section class="page" id="page-projects">
+        <div class="page-intro"><div class="eyebrow">YOUR WORKSPACE</div><h1>My projects</h1><p>All your saved creative work, together in one place.</p></div>
+        <div class="library-toolbar"><div class="search-wrap"><span>⌕</span><input id="projectSearch" placeholder="Search your projects..." /></div><select id="projectFilter"><option value="all">All projects</option><option value="image">Images</option><option value="video">Videos</option><option value="storyboard">Storyboards</option></select></div>
+        <div class="project-grid" id="allProjects"></div>
+        <div class="empty-state" id="projectsEmpty"><div class="empty-symbol">▧</div><b>No projects yet</b><p>When you save a creative project, it will show up here.</p><button class="secondary-btn" data-go="create">Start a project</button></div>
+      </section>
+
+      <section class="page" id="page-library">
+        <div class="page-intro"><div class="eyebrow">YOUR ASSETS</div><h1>Asset library</h1><p>Reference images you upload are kept in this browser for this first version.</p></div>
+        <div class="upload-library"><div class="upload-big-icon">＋</div><h3>Add a reference image</h3><p>Upload images to use as creative references in your workspace.</p><input type="file" id="libraryFile" accept="image/*" hidden><button class="primary-btn" id="libraryUploadBtn">Upload image</button><small>Images stay on this device in this prototype.</small></div>
+        <div class="asset-grid" id="assetGrid"></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div class="eyebrow">PREFERENCES</div><h1>Settings</h1><p>Manage your workspace preferences and connected services.</p></div>
+        <div class="settings-card"><div><h3>Workspace</h3><p>Personal workspace</p></div><div class="settings-value">RAFAY AI STUDIO</div></div>
+        <div class="settings-card"><div><h3>Data storage</h3><p>Projects are currently saved in this browser only.</p></div><span class="settings-value warning-text">Local storage</span></div>
+        <div class="settings-card"><div><h3>Firebase connection</h3><p>Authentication, cloud database and storage are not configured yet.</p></div><span class="settings-value warning-text">Not connected</span></div>
+        <div class="settings-card"><div><h3>AI generation provider</h3><p>Connect a supported image/video inference service before enabling generation.</p></div><span class="settings-value warning-text">Not connected</span></div>
+        <div class="settings-card"><div><h3>Clear local workspace</h3><p>Remove projects and assets saved in this browser.</p></div><button class="danger-btn" id="clearWorkspace">Clear workspace</button></div>
+      </section>
+
+      <footer class="footer"><span>✳ RAFAY AI STUDIO</span><span>Imagine. Create. Transform.</span><span>Built for ideas that matter.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop hidden" id="modal"><div class="modal"><button class="modal-close" id="modalClose">×</button><div class="modal-icon">✳</div><h2 id="modalTitle">Project saved</h2><p id="modalText">Your project has been saved to this browser.</p><button class="primary-btn" id="modalOk">Continue</button></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
