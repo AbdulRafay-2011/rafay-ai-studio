@@ -33,3 +33,13 @@ Projects and assets in this version are stored in the current browser only. They
 4. Add user profiles and cloud-synced projects.
 
 Repository: https://github.com/AbdulRafay-2011/rafay-ai-studio
+
+## Firebase setup
+
+The web client is configured in `firebase.js` for Google Authentication and per-user Firestore project sync. The Firebase web config is public client configuration; never add service-account credentials to this repository.
+
+Before using cloud sync:
+1. In Firebase Authentication settings, add `abdulrafay-2011.github.io` to Authorized domains.
+2. In Firestore Database > Rules, publish the contents of `firestore.rules`.
+
+The Firestore rules allow each signed-in user to access only documents under their own `users/{uid}` path. `firebase.json` points Firebase CLI deployments to the same rules file.
