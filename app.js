@@ -51,6 +51,10 @@ window.addEventListener("rafay-auth-state", event => {
   window.rafayCurrentUser = user;
   if (authButton) authButton.textContent = user ? "Sign out" : "Sign in with Google";
   if (authStatus) authStatus.textContent = user ? (user.displayName || user.email || "Signed in") : "Not signed in";
+  const firebaseStatus = document.querySelector("#firebaseStatus");
+  const storageStatus = document.querySelector("#storageStatus");
+  if (firebaseStatus) firebaseStatus.textContent = user ? "Signed in · Cloud sync" : "Ready · Sign in to sync";
+  if (storageStatus) storageStatus.textContent = user ? "Cloud sync active" : "Local until sign-in";
   if (user && projectsFromCloud.length) {
     const merged = new Map(projects.map(project => [project.id, project]));
     projectsFromCloud.forEach(project => merged.set(project.id, project));
