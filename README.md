@@ -43,3 +43,13 @@ Before using cloud sync:
 2. In Firestore Database > Rules, publish the contents of `firestore.rules`.
 
 The Firestore rules allow each signed-in user to access only documents under their own `users/{uid}` path. `firebase.json` points Firebase CLI deployments to the same rules file.
+
+
+## Account and admin features
+- Google sign-in and private per-user cloud projects.
+- Cloud deletion for projects.
+- Editable user profile stored at `users/{uid}`.
+- Owner-only read-only admin overview of profiles and project counts.
+- The owner UID is restricted in both `firebase.js` and `firestore.rules`; update both files if the owner account changes.
+
+Publish the updated `firestore.rules` in Firebase Console > Firestore Database > Rules. Users can only modify their own profile and projects; the owner can read user profiles and projects for the admin overview.
